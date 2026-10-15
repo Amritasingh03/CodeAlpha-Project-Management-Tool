@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Project Management Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f5fa; padding: 30px 15px; }
+        .box { max-width: 420px; margin: 50px auto; background: white; padding: 28px; border-radius: 12px; }
+        h1 { color: #243b55; }
+        input { width: 100%; box-sizing: border-box; padding: 11px; margin: 8px 0 18px; }
+        button { background: #246bfd; color: white; border: 0; padding: 12px 18px; border-radius: 6px; cursor: pointer; }
+        .errorlist { color: #d62828; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>Welcome Back</h1>
+    <p>Log in to manage your projects and tasks.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Login</button>
+    </form>
+</div>
+</body>
+</html>

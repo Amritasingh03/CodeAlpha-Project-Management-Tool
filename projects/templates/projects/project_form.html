@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f5fa; margin: 0; padding: 30px 15px; }
+        .container { max-width: 600px; margin: 30px auto; background: white; padding: 28px; border-radius: 12px; }
+        h1 { color: #243b55; }
+        label { font-weight: bold; }
+        input, textarea, select { width: 100%; box-sizing: border-box; padding: 11px; margin: 8px 0 18px; border: 1px solid #ccd3df; border-radius: 6px; }
+        button { background: #246bfd; color: white; border: 0; padding: 12px 18px; border-radius: 6px; cursor: pointer; }
+        a { color: #246bfd; text-decoration: none; margin-left: 12px; }
+        .help { color: #68758a; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Create Project</h1>
+    <p class="help">Add a name, description and team members.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Project</button>
+        <a href="{% url 'project_list' %}">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

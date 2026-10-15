@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Management Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f5fa;
+    color: #24304a;
+}
+
+header {
+    background: #243b55;
+    color: white;
+    padding: 22px 7%;
+}
+
+main {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn {
+    background: #246bfd;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 7px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-logout {
+    background: #dc3545;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.stat {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 3px 12px #0000000d;
+    border-left: 5px solid #246bfd;
+}
+
+.stat h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: #68758a;
+}
+
+.number {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 3px 12px #0000000d;
+    overflow-wrap: anywhere;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.muted {
+    color: #68758a;
+    line-height: 1.5;
+}
+
+.empty {
+    background: white;
+    padding: 35px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.section-title {
+    margin-top: 35px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Project Management Tool</h2>
+    <p>Plan projects. Organize tasks. Work together.</p>
+</header>
+
+<main>
+
+    <div class="top">
+        <div>
+            <h1>My Dashboard</h1>
+            <p class="muted">
+                Welcome, {{ request.user.username }}! Manage your projects and tasks here.
+            </p>
+        </div>
+
+        <div class="actions">
+            <a class="btn" href="{% url 'project_create' %}">
+                + Create Project
+            </a>
+
+            <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-logout">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <h3>Total Projects</h3>
+            <p class="number">{{ total_projects }}</p>
+        </div>
+
+        <div class="stat">
+            <h3>Total Tasks</h3>
+            <p class="number">{{ total_tasks }}</p>
+        </div>
+
+        <div class="stat">
+            <h3>Completed Tasks</h3>
+            <p class="number">{{ completed_tasks }}</p>
+        </div>
+
+        <div class="stat">
+            <h3>Pending Tasks</h3>
+            <p class="number">{{ pending_tasks }}</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">My Projects</h2>
+
+    <div class="grid">
+        {% for project in projects %}
+        <div class="card">
+
+            <h3>
+                <a href="{% url 'project_detail' project.id %}"
+                   style="color:#246bfd; text-decoration:none;">
+                    {{ project.name }}
+                </a>
+            </h3>
+
+            <p class="muted">
+                {{ project.description|default:"No description added." }}
+            </p>
+
+            <p class="muted">
+                Owner: {{ project.owner.username }}
+            </p>
+
+            <p class="muted">
+                Tasks: {{ project.tasks.count }}
+            </p>
+
+        </div>
+        {% empty %}
+
+        <div class="empty">
+            <h3>No projects yet</h3>
+            <p class="muted">Create your first project to get started.</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</main>
+
+</body>
+</html>

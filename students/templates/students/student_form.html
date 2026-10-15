@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f5f9; padding: 30px; }
+        .container { max-width: 550px; margin: auto; background: white; padding: 25px; border-radius: 12px; }
+        h1 { color: #243b55; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-top: 6px; box-sizing: border-box; }
+        button { margin-top: 20px; padding: 11px 18px; background: #246bfd; color: white; border: 0; border-radius: 6px; cursor: pointer; }
+        a { color: #246bfd; text-decoration: none; }
+        .errorlist { color: #d62828; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Add Student</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Student</button>
+    </form>
+
+    <p><a href="{% url 'student_list' %}">← Back to Student List</a></p>
+</div>
+</body>
+</html>

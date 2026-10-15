@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f5fa; padding: 30px; }
+        .box { max-width: 450px; margin: 30px auto; background: white; padding: 25px; border-radius: 12px; }
+        input { max-width: 100%; }
+        button { background: #246bfd; color: white; border: 0; padding: 12px 18px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>Create Account</h1>
+    <p>Register to manage your projects.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <p>Already registered? <a href="{% url 'login' %}">Login</a></p>
+</div>
+</body>
+</html>

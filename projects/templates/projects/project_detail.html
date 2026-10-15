@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.name }}</title>
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p>{{ project.description }}</p>
+
+    <p>
+        <a href="{% url 'task_create' project.id %}">+ Create Task</a>
+        |
+        <a href="{% url 'project_list' %}">Back to Dashboard</a>
+    </p>
+
+    <h2>Tasks</h2>
+
+    {% for task in tasks %}
+        <hr>
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <p>Status: {{ task.get_status_display }}</p>
+        <p>Assigned to: {{ task.assigned_to|default:"Unassigned" }}</p>
+        <p>Due date: {{ task.due_date|default:"Not set" }}</p>
+
+        <a href="{% url 'task_update' task.id %}">Edit Task / Update Status</a>
+
+        <h4>Comments</h4>
+        {% for comment in task.comments.all %}
+            <p><strong>{{ comment.author }}</strong>: {{ comment.text }}</p>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+
+        <form method="post" action="{% url 'add_comment' task.id %}">
+            {% csrf_token %}
+            <textarea name="text" rows="2" required placeholder="Write a comment"></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+    {% empty %}
+        <p>No tasks yet. Click Create Task to add one.</p>
+    {% endfor %}
+</body>
+</html>
