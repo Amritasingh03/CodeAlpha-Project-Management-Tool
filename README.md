@@ -2,7 +2,7 @@ CodeAlpha Project Management Tool
 
 
 
-A web-based project management application built using Python and Django.
+A web-based Project Management Tool developed using Python and Django as part of the CodeAlpha internship project.
 
 
 
@@ -10,17 +10,23 @@ Features
 
 
 
-\- Student record listing
+\- View all project records
 
-\- Add new student records
+\- Add new project records
 
-\- Delete student records
+\- View project details
 
-\- Django admin panel
+\- Edit and update existing projects
 
-\- SQLite database
+\- Delete projects
 
-\- HTML templates
+\- Student record management
+
+\- Django Admin Panel
+
+\- SQLite database integration
+
+\- Responsive HTML and CSS templates
 
 
 
@@ -34,61 +40,121 @@ Technologies Used
 
 \- SQLite
 
-\- HTML
+\- HTML5
 
-\- CSS
+\- CSS3
 
 \- Git and GitHub
 
 
 
-Installation
+Installation and Setup
 
 
 
-1\. Clone or download this repository.
+1\. Clone the Repository
 
 
 
-2\. Open the project folder in a terminal.
+git clone https://github.com/Amritasingh03/CodeAlpha-Project-Management-Tool.git
 
 
 
-3\. Create and activate a virtual environment.
+2\. Open the Project Folder
 
 
 
-4\. Install dependencies:
-
-&#x20;  
-
-&#x20;  "pip install -r requirements.txt"
+cd CodeAlpha-Project-Management-Tool
 
 
 
-5\. Apply database migrations:
-
-&#x20;  
-
-&#x20;  "python manage.py migrate"
+3\. Create a Virtual Environment
 
 
 
-6\. Start the development server:
-
-&#x20;  
-
-&#x20;  "python manage.py runserver"
+python -m venv venv
 
 
 
-7\. Open "http://127.0.0.1:8000/students/" in your browser.
+4\. Activate the Virtual Environment
 
 
 
-Note
+For Windows CMD:
 
 
 
-This project is intended for learning and development. Do not use Django's development server for production deployment.
+venv\\Scripts\\activate
+
+
+
+5\. Install Dependencies
+
+
+
+pip install django
+
+
+
+6\. Apply Database Migrations
+
+
+
+python manage.py migrate
+
+
+
+7\. Run the Development Server
+
+
+
+python manage.py runserver
+
+
+
+Open the following URL in your browser:
+
+
+
+http://127.0.0.1:8000/
+
+
+
+Database
+
+
+
+This project uses SQLite to store application data.
+
+
+
+Purpose
+
+
+
+This project demonstrates Django web development, database operations, CRUD functionality, and basic project management concepts.
+
+
+
+Author
+
+
+
+Amrita Singh
+
+
+
+Internship
+
+
+
+CodeAlpha Internship Project
+
+
+
+License
+
+
+
+This project is created for educational and internship purposes.
 
